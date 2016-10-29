@@ -1,4 +1,4 @@
-package se.lemv.board;
+package se.lemv.game;
 
 public class Move {
 
