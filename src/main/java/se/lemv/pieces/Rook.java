@@ -7,9 +7,9 @@ import se.lemv.game.Color;
 import se.lemv.game.Move;
 import se.lemv.game.Position;
 
-public class King extends ChessPiece {
+public class Rook extends ChessPiece {
 
-	public King(String name, Color color, boolean isCaptured, List<Move> moves, Position position, URI resourcesURI) {
+	public Rook(String name, Color color, boolean isCaptured, List<Move> moves, Position position, URI resourcesURI) {
 		super(name, color, isCaptured, moves, position, resourcesURI);
 	}
 

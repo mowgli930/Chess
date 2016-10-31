@@ -1,5 +1,5 @@
 package se.lemv.game;
 
-public class Color {
-	String color;
+public enum Color {
+	WHITE, BLACK
 }
