@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Graphics {
@@ -28,7 +30,7 @@ public class Graphics {
 	}
 	
 	private GridPane createGridPane() {
-		ImageView[][] imageView = createImageViewArray();
+		VBox[][] imageView = createVBoxWithImageViewArray();
 		GridPane gridPane = new GridPane();
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
@@ -37,22 +39,25 @@ public class Graphics {
 		}
 		return gridPane;
 	}
-	private ImageView[][] createImageViewArray() {
-		ImageView[][] imageView = new ImageView[8][8];
+	private VBox[][] createVBoxWithImageViewArray() {
+		VBox[][] vbox = new VBox[8][8];
 		Image darkTile = getDarkTile();
 		Image lightTile = getLightTile();
 		
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
+				vbox[i][j] = makeStackPaneVBox();
 				if(i%2==0 && j%2==0 || i%2==1 && j%2==1)
-					imageView[i][j] = new ImageView(darkTile);					
+					vbox[i][j].getChildren().add(new ImageView(darkTile));
 				else
-					imageView[i][j] = new ImageView(lightTile);
+					vbox[i][j].getChildren().add(new ImageView(lightTile));
 			}
 		}
-		return imageView;
+		return vbox;
 	}
-
+	private VBox makeStackPaneVBox() {
+		return new VBox(new StackPane());
+	}
 	private Image getDarkTile() {
 		return new Image(loadImage("dark_tile.png").toURI().toString());
 	}
