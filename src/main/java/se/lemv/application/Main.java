@@ -29,8 +29,17 @@ public class Main extends Application {
 	public void start(Stage mainStage) {
 		Graphics graphics = new Graphics(mainStage);
 		graphics.Initialize();
+		
+		startGame();
 	}
 	
+	private void startGame() {
+		boolean isRunning = true;
+		while(isRunning) {
+			
+		}
+	}
+
 	public void stop() {}
 	
 	private Player[] createPlayers() {
