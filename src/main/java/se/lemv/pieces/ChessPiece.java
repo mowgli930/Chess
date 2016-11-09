@@ -1,28 +1,32 @@
 package se.lemv.pieces;
 
-import java.net.URI;
 import java.util.List;
 
 import se.lemv.game.Color;
 import se.lemv.game.Move;
 import se.lemv.game.Position;
 
-public abstract class ChessPiece {
+public class ChessPiece {
 	
-	protected String name;
-	protected Color color;
-	protected boolean isCaptured;
-	protected List<Move> moves;
-	protected Position position;
-	protected URI resourceURI;
+	private String name;
+	private Color color;
+	private boolean isCaptured;
+	private List<Move> moves;
+	private Position position;
+	private Type piece;
+	private String resourcePath;
 
-	public ChessPiece(String name, Color color, boolean isCaptured, List<Move> moves, Position position, URI resourceURI) {
+	public enum Type {
+		PAWN, ROOK, KNIGHT, BISHOP, KING, QUEEN
+	}
+	public ChessPiece(String name, Color color, boolean isCaptured, List<Move> moves, Position position, Type piece, String resourceString) {
 		this.name = name;
 		this.color = color;
 		this.isCaptured = isCaptured;
 		this.moves = moves;
 		this.position = position;
-		this.resourceURI = resourceURI;
+		this.piece = piece;
+		this.resourcePath = resourceString;
 	}
 
 	public String getName() {
@@ -44,9 +48,13 @@ public abstract class ChessPiece {
 	public Position getPosition() {
 		return position;
 	}
+	
+	public Type getType() {
+		return this.piece;
+	}
 
-	public URI getResourceURI() {
-		return resourceURI;
+	public String getResourcePath() {
+		return resourcePath;
 	}
 	
 	

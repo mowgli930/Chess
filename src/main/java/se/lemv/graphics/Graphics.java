@@ -2,27 +2,25 @@ package se.lemv.graphics;
 
 import java.io.File;
 
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import se.lemv.game.Position;
+import se.lemv.pieces.ChessPiece;
 
 public class Graphics {
 	
 	private final Stage mainStage;
 	private final GridPane gridPane;
+	private Group[][] group;
 	
 	public Graphics(Stage mainStage) {
 		this.mainStage = mainStage;
-		this.gridPane = createGridPane();
+		this.gridPane = createGridPaneWithGroups();
 	}
 	public void Initialize() {
 		mainStage.setTitle("Chess");
@@ -31,16 +29,15 @@ public class Graphics {
 		rootNode.getChildren().addAll(gridPane);
 		mainStage.setScene(scene);
 		mainStage.show();
-		testPawnImage(gridPane);
 	}
 
-	private void testPawnImage(GridPane gridPane) {
-		Image pawn = new Image(loadImage("test_pawn.png").toURI().toString());
-		Group group = (Group) gridPane.getChildren().get(0);
-		ImageView imageView = (ImageView) group.getChildren().get(1);
-		imageView.setImage(pawn);
+	public void drawPiece(ChessPiece piece) {
+		Position pos = piece.getPosition();
+		ImageView imageView = (ImageView) this.group[pos.getX()][pos.getY()].getChildren().get(1);
+		imageView.setImage(loadImage(piece.getResourcePath()));
 	}
-	private GridPane createGridPane() {
+	
+	private GridPane createGridPaneWithGroups() {
 		Group[][] groups = createGroupsWithImageView();
 		GridPane gridPane = new GridPane();
 		for(int i = 0; i < 8; i++){
@@ -51,7 +48,7 @@ public class Graphics {
 		return gridPane;
 	}
 	private Group[][] createGroupsWithImageView() {
-		Group[][] group = new Group[8][8];
+		this.group = new Group[8][8];
 		Image darkTile = getDarkTile();
 		Image lightTile = getLightTile();
 		
@@ -66,12 +63,15 @@ public class Graphics {
 		return group;
 	}
 	private Image getDarkTile() {
-		return new Image(loadImage("dark_tile.png").toURI().toString());
+		return new Image(loadFile("dark_tile.png").toURI().toString());
 	}
 	private Image getLightTile() {
-		return new Image(loadImage("light_tile.png").toURI().toString());
+		return new Image(loadFile("light_tile.png").toURI().toString());
 	}
-	private File loadImage(String fileName) {
+	private Image loadImage(String resourcePath) {
+		return new Image(loadFile(resourcePath).toURI().toString());
+	}
+	private File loadFile(String fileName) {
 		ClassLoader classLoader = getClass().getClassLoader();
 		return new File(classLoader.getResource(fileName).getFile());
 	}

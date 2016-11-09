@@ -1,6 +1,5 @@
 package se.lemv.application;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +12,6 @@ import se.lemv.game.Player;
 import se.lemv.game.Position;
 import se.lemv.graphics.Graphics;
 import se.lemv.pieces.ChessPiece;
-import se.lemv.pieces.Pawn;
 import se.lemv.service.GameService;
 
 public class Main extends Application {
@@ -35,57 +33,7 @@ public class Main extends Application {
 	
 	public void stop() {}
 	
-	public List<ChessPiece> createWhitePieces() throws URISyntaxException {
-		List<ChessPiece> pieces; 
-		pieces = Arrays.asList(
-				new Pawn("wrook1", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(0, 0), new URI("test_pawn.png")),
-				new Pawn("wknight1", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(1, 0), new URI("test_pawn.png")),
-				new Pawn("wbishop1", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(2, 0), new URI("test_pawn.png")),
-				new Pawn("wking", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(3, 0), new URI("test_pawn.png")),
-				new Pawn("wqueen", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(4, 0), new URI("test_pawn.png")),
-				new Pawn("wbishop2", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(5, 0), new URI("test_pawn.png")),
-				new Pawn("wknight2", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(6, 0), new URI("test_pawn.png")),
-				new Pawn("wrook2", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(7, 0), new URI("test_pawn.png")),
-				
-				new Pawn("wpawn1", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(0, 1), new URI("test_pawn.png")),
-				new Pawn("wpawn2", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(1, 1), new URI("test_pawn.png")),
-				new Pawn("wpawn3", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(2, 1), new URI("test_pawn.png")),
-				new Pawn("wpawn4", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(3, 1), new URI("test_pawn.png")),
-				new Pawn("wpawn5", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(4, 1), new URI("test_pawn.png")),
-				new Pawn("wpawn6", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(5, 1), new URI("test_pawn.png")),
-				new Pawn("wpawn7", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(6, 1), new URI("test_pawn.png")),
-				new Pawn("wpawn8", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(7, 1), new URI("test_pawn.png"))		
-				);
-		
-		
-		return pieces;
-	}
-	public List<ChessPiece> createBlackPieces() throws URISyntaxException {
-		List<ChessPiece> pieces;
-		pieces = Arrays.asList(
-				new Pawn("bpawn1", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(0, 6), new URI("test_pawn.png")),
-				new Pawn("bpawn2", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(1, 6), new URI("test_pawn.png")),
-				new Pawn("bpawn3", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(2, 6), new URI("test_pawn.png")),
-				new Pawn("bpawn4", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(3, 6), new URI("test_pawn.png")),
-				new Pawn("bpawn5", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(4, 6), new URI("test_pawn.png")),
-				new Pawn("bpawn6", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(5, 6), new URI("test_pawn.png")),
-				new Pawn("bpawn7", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(6, 6), new URI("test_pawn.png")),
-				new Pawn("bpawn8", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(7, 6), new URI("test_pawn.png")),
-				
-				new Pawn("brook1", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(0, 7), new URI("test_pawn.png")),
-				new Pawn("bknight1", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(1, 7), new URI("test_pawn.png")),
-				new Pawn("bbishop1", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(2, 7), new URI("test_pawn.png")),
-				new Pawn("bking", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(3, 7), new URI("test_pawn.png")),
-				new Pawn("bqueen", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(4, 7), new URI("test_pawn.png")),
-				new Pawn("bbishop2", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(5, 7), new URI("test_pawn.png")),
-				new Pawn("bknight2", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(6, 7), new URI("test_pawn.png")),
-				new Pawn("brook2", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(7, 7), new URI("test_pawn.png"))
-				);
-		
-		
-		return pieces;
-	}
-	public Player[] createPlayers() {
+	private Player[] createPlayers() {
 		Player[] players = new Player[2];
 		try {
 			players[0] = new Player("Player1", Color.WHITE, createWhitePieces());
@@ -94,6 +42,56 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 		return players;
+	}
+	private List<ChessPiece> createWhitePieces() throws URISyntaxException {
+		List<ChessPiece> pieces; 
+		pieces = Arrays.asList(
+				new ChessPiece("wrook1", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(0, 0), ChessPiece.Type.ROOK, "test_pawn.png"),
+				new ChessPiece("wknight1", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(1, 0), ChessPiece.Type.KNIGHT, "test_pawn.png"),
+				new ChessPiece("wbishop1", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(2, 0), ChessPiece.Type.BISHOP, "test_pawn.png"),
+				new ChessPiece("wking", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(3, 0), ChessPiece.Type.QUEEN, "test_pawn.png"),
+				new ChessPiece("wqueen", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(4, 0), ChessPiece.Type.KING, "test_pawn.png"),
+				new ChessPiece("wbishop2", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(5, 0), ChessPiece.Type.BISHOP, "test_pawn.png"),
+				new ChessPiece("wknight2", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(6, 0), ChessPiece.Type.KNIGHT, "test_pawn.png"),
+				new ChessPiece("wrook2", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(7, 0), ChessPiece.Type.ROOK, "test_pawn.png"),
+				
+				new ChessPiece("wpawn1", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(0, 1), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("wpawn2", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(1, 1), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("wpawn3", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(2, 1), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("wpawn4", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(3, 1), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("wpawn5", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(4, 1), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("wpawn6", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(5, 1), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("wpawn7", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(6, 1), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("wpawn8", Color.WHITE, false, Arrays.asList(new Move(0, 1)), new Position(7, 1), ChessPiece.Type.PAWN, "test_pawn.png")		
+				);
+		
+		
+		return pieces;
+	}
+	private List<ChessPiece> createBlackPieces() throws URISyntaxException {
+		List<ChessPiece> pieces;
+		pieces = Arrays.asList(
+				new ChessPiece("bpawn1", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(0, 6), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("bpawn2", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(1, 6), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("bpawn3", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(2, 6), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("bpawn4", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(3, 6), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("bpawn5", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(4, 6), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("bpawn6", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(5, 6), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("bpawn7", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(6, 6), ChessPiece.Type.PAWN, "test_pawn.png"),
+				new ChessPiece("bpawn8", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(7, 6), ChessPiece.Type.PAWN, "test_pawn.png"),
+				
+				new ChessPiece("brook1", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(0, 7), ChessPiece.Type.ROOK, "test_pawn.png"),
+				new ChessPiece("bknight1", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(1, 7), ChessPiece.Type.KNIGHT, "test_pawn.png"),
+				new ChessPiece("bbishop1", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(2, 7), ChessPiece.Type.BISHOP, "test_pawn.png"),
+				new ChessPiece("bking", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(3, 7), ChessPiece.Type.KING, "test_pawn.png"),
+				new ChessPiece("bqueen", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(4, 7), ChessPiece.Type.QUEEN, "test_pawn.png"),
+				new ChessPiece("bbishop2", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(5, 7), ChessPiece.Type.BISHOP, "test_pawn.png"),
+				new ChessPiece("bknight2", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(6, 7), ChessPiece.Type.KNIGHT, "test_pawn.png"),
+				new ChessPiece("brook2", Color.BLACK, false, Arrays.asList(new Move(0, 1)), new Position(7, 7), ChessPiece.Type.ROOK, "test_pawn.png")
+				);
+		
+		
+		return pieces;
 	}
 
 
