@@ -18,5 +18,11 @@ public final class GameService {
 		this.players[0] = player1;
 		this.players[1] = player2;
 	}
+
+
+	public void drawBoard() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
