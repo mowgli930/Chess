@@ -1,5 +1,6 @@
 package se.lemv.game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import se.lemv.pieces.ChessPiece;
@@ -26,6 +27,13 @@ public final class Player {
 
 	public List<ChessPiece> getPieces() {
 		return pieces;
+	}
+	
+	public List<Position> getPositions() {
+		List<Position> list = new ArrayList<Position>();
+		for(ChessPiece cp: pieces) 
+			list.add(cp.getPosition());
+		return list;
 	}
 		
 }

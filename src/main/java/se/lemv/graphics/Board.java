@@ -2,6 +2,7 @@ package se.lemv.graphics;
 
 import java.io.File;
 
+import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -9,28 +10,49 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import se.lemv.game.Player;
 import se.lemv.game.Position;
+import se.lemv.game.setup.NormalChessSetUp;
 import se.lemv.pieces.ChessPiece;
+import se.lemv.service.GameService;
 
-public class Graphics {
+public class Board extends Application {
 	
-	private final Stage mainStage;
+	private Stage primaryStage;
 	private final GridPane gridPane;
 	private Group[][] group;
+	private Player[] players;
+	GameService gameService;
 	
-	public Graphics(Stage mainStage) {
-		this.mainStage = mainStage;
+	public Board() {
 		this.gridPane = createGridPaneWithGroups();
 	}
-	public void Initialize() {
-		mainStage.setTitle("Chess");
+	
+	@Override
+	public void init() {
+		players = NormalChessSetUp.createPlayers();
+		gameService = new GameService(players[0], players[1]);
+	}
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		this.primaryStage = primaryStage;
+		primaryStage.setTitle("Chess");
 		FlowPane rootNode = new FlowPane();
 		Scene scene = new Scene(rootNode, 800, 800);		
 		rootNode.getChildren().addAll(gridPane);
-		mainStage.setScene(scene);
-		mainStage.show();
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		drawAllPieces();
 	}
 
+	public void drawAllPieces() {
+		for(ChessPiece cp: players[0].getPieces()){
+			drawPiece(cp);
+		}
+		for(ChessPiece cp: players[1].getPieces()) {
+			drawPiece(cp);
+		}
+	}
 	public void drawPiece(ChessPiece piece) {
 		Position pos = piece.getPosition();
 		ImageView imageView = (ImageView) this.group[pos.getX()][pos.getY()].getChildren().get(1);
@@ -49,8 +71,8 @@ public class Graphics {
 	}
 	private Group[][] createGroupsWithImageView() {
 		this.group = new Group[8][8];
-		Image darkTile = getDarkTile();
-		Image lightTile = getLightTile();
+		Image darkTile = loadImage("dark_tile.png");
+		Image lightTile = loadImage("light_tile.png");
 		
 		for(int i = 0; i < 8; i++){
 			for(int j = 0; j < 8; j++){
@@ -61,12 +83,6 @@ public class Graphics {
 			}
 		}
 		return group;
-	}
-	private Image getDarkTile() {
-		return new Image(loadFile("dark_tile.png").toURI().toString());
-	}
-	private Image getLightTile() {
-		return new Image(loadFile("light_tile.png").toURI().toString());
 	}
 	private Image loadImage(String resourcePath) {
 		return new Image(loadFile(resourcePath).toURI().toString());

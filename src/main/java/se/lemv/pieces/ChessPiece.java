@@ -1,5 +1,6 @@
 package se.lemv.pieces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import se.lemv.game.Color;

@@ -11,18 +11,18 @@ import se.lemv.pieces.ChessPiece;
 public final class GameService {
 	
 	private final Player players[] = new Player[2];
-	private final ChessPiece[][] boardMatrix = new ChessPiece[8][8];
 
 	
 	public GameService(Player player1, Player player2) {
 		this.players[0] = player1;
 		this.players[1] = player2;
+		setUpPieces();
 	}
-
-
-	public void drawBoard() {
-		// TODO Auto-generated method stub
-		
+	
+	private void setUpPieces() {
+		for(ChessPiece cp: players[0].getPieces()) {
+			
+		}
 	}
 	
 }
