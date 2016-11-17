@@ -15,9 +15,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		Application.launch(Board.class);
+//		while(game()){}
 	}
 
-	private void game() {
+	private static boolean game() {
 		boolean isRunning = true;
 		while (isRunning) {
 			// TODO implement main game loop
@@ -31,6 +32,7 @@ public class Main {
 			stage.setScene(scene);
 			stage.showAndWait();
 		}
+		return isRunning;
 	}
 	
 }
